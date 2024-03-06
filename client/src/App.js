@@ -6,6 +6,7 @@ import Navbar from './components/Navbar/Navbar';
 import Register from './components/Auth/Register/Register';
 import Login from './components/Auth/Login/Login';
 
+
 function App() {
   return (
     <Router >
