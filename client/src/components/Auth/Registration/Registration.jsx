@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './AdminReg.css';
+import './registration.css';
 
-const AdminReg = () => {
+const Registration = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,7 +18,7 @@ const AdminReg = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await axios.post('http://localhost:4000/api/admin/signup', formData);
+        const response = await axios.post('http://localhost:4000/api/signup', formData);
         console.log(response.data);
         alert("Registration successful");
        
@@ -54,12 +54,12 @@ const AdminReg = () => {
   };
 
   return (
-    <section className='register p-20'>
-      <div className="flex flex-col  items-center  justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <section className='register p-20 '>
+      <div className="flex flex-col  items-center  justify-center  px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full  bg-white border rounded-lg  shadow  md:mt-0 sm:max-w-md xl:p-0 ">
           <div className="p-6 space-y-4  md:space-y-6 sm:p-8">
             <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-black">
-              Admin Create Account
+              Create Account
             </h1>
             <form className="space-y-4 md:space-y-6 " onSubmit={handleSubmit}>
               <div>
@@ -129,7 +129,7 @@ const AdminReg = () => {
               <p className="text-sm text-center  text-black dark:black">
                 Already have an account?{' '}
                 <a
-                  href="/admin/login"
+                  href="/login"
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
                   Login
@@ -143,4 +143,4 @@ const AdminReg = () => {
   );
 };
 
-export default AdminReg;
+export default Registration;
