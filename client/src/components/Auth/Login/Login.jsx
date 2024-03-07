@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import "./AdminLogin.css"
-const AdminLogin = () => {
+import "./login.css"
+const Login = () => {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -21,9 +21,10 @@ const AdminLogin = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:4000/api/admin/login', formData);
+            const response = await axios.post('http://localhost:4000/api/login', formData);
             console.log(response.data);
             alert("Login successful");
+            window.location.replace("/");
 
         } catch (error) {
             console.error('Error logging in:', error);
@@ -37,7 +38,7 @@ const AdminLogin = () => {
                 <div className="w-full bg-white border rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-black">
-                            Admin Login
+                             Login
                         </h1>
                         <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                             <div>
@@ -89,7 +90,7 @@ const AdminLogin = () => {
                             <p className="text-sm text-center font-medium text-gray-500 dark:text-black">
                                 New to MyApp?{' '}
                                 <a
-                                    href="/admin/signup"
+                                    href="/signup"
                                     className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                                 >
                                     Sign Up
@@ -103,4 +104,4 @@ const AdminLogin = () => {
     );
 };
 
-export default AdminLogin;
+export default Login;
