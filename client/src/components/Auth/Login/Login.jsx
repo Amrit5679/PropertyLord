@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import "./login.css"
+import { GoogleLogin,GoogleOAuthProvider } from '@react-oauth/google';
+
+
 const Login = () => {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     });
 
+   
     const [errors, setErrors] = useState({});
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
+
+   
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -87,6 +94,22 @@ const Login = () => {
                             >
                                 Login
                             </button>
+
+
+                            <GoogleOAuthProvider clientId="1049586068495-ttjv8g7h3tp64mah2oukatagl4p29hem.apps.googleusercontent.com">
+                            <GoogleLogin
+                                      onSuccess={credentialResponse => {
+                                      console.log(credentialResponse);
+                                      }}
+                                        onError={() => {
+                                        console.log('Login Failed');
+                                      }}
+                                        
+                            />
+                            </GoogleOAuthProvider>
+
+
+
                             <p className="text-sm text-center font-medium text-gray-500 dark:text-black">
                                 New to MyApp?{' '}
                                 <a
@@ -97,6 +120,7 @@ const Login = () => {
                                 </a>
                             </p>
                         </form>
+
                     </div>
                 </div>
             </div>
