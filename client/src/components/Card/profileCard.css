@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+profile {
+  background: #27ae60;
+}
+profile .container {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  transition: 1s;
+  overflow: hidden;
+  padding-bottom: 40px;
+}
+profile .cards {
+  /* width: calc(100% / 2 - 10px); */
+  width: 90%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+profile .card {
+  width: calc(100% / 4 - 20px);
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s ease;
+}
+profile .cards .card:hover {
+  transform: translateY(-15px);
+}
+profile .content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+profile .content .img {
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  padding: 3px;
+  background: #27ae60;
+  margin-bottom: 14px;
+}
+profile .img img {
+  height: 100%;
+  width: 100%;
+  border: 3px solid #ffff;
+  border-radius: 50%;
+  object-fit:cover;
+}
+profile .name {
+  font-size: 20px;
+  font-weight: 500;
+}
+profile .job {
+  font-size: 20px;
+  color: #27ae60;
+}
+profile .media-icons {
+  margin-top: 10px;
+  display: flex;
+}
+profile .media-icons a {
+  text-align: center;
+  line-height: 33px;
+  height: 35px;
+  width: 35px;
+  margin: 0 4px;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: #528f6c;
+  transition: all 0.3s ease;
+}
+profile .media-icons a:hover {
+  color: #27ae60;
+  background-color: #fff;
+  border-color: #27ae60;
+}
+profile .container .button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+profile .button label {
+  height: 15px;
+  width: 15px;
+  border-radius: 20px;
+  background: #fff;
+  margin: 0 4px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+profile .button label.active {
+  width: 35px;
+}
+@media (max-width: 768px) {
+  profile .main-card .cards .card {
+    margin: 20px 0 10px 0;
+    width: calc(100% / 2 - 10px);
+  }
+}
+/* @media (max-width: 600px) {
+  profile .main-card .cards .card{
+     margin: 20px 0 10px 0;
+     width: 100%;
+  }
+}  */
