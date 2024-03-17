@@ -3,6 +3,7 @@ const {dbConn} = require('./config/db');
 const cors = require('cors');
 const userRoutes = require('./routes/user');
 const adminRoutes =require('./routes/admin')
+const propertyRoutes =require('./routes/property')
 
 
 
@@ -18,6 +19,7 @@ dbConn();
 
 app.use('/api', userRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api', propertyRoutes);
 
 
 app.listen(port,()=>{

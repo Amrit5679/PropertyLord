@@ -1,4 +1,4 @@
-// routes/admin.js
+
 
 const express = require('express');
 const router = express.Router();
@@ -43,6 +43,16 @@ router.post('/login', async (req, res) => {
   } catch (error) {
     console.error('Error logging in:', error);
     res.status(500).json({ error: 'Internal server error.' });
+  }
+});
+router.post('/property', async (req, res) => {
+  try {
+      const newProperty = new Property(req.body);
+      await newProperty.save();
+
+      res.status(201).json({ message: 'Property created successfully', property: newProperty });
+  } catch (error) {
+      res.status(500).json({ message: 'Internal server error', error: error.response.data });
   }
 });
 

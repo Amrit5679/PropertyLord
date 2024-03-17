@@ -8,6 +8,7 @@ import Login from "../Auth/Login/Login";
 import Registration from "../Auth/Registration/Registration";
 import ProfileCard from "../Card/ProfileCard";
 import Footer from "../common/footer/Footer";
+import PropertyForm from "../common/PropertyForm/Propertyform";
 
 const Pages = () => {
   return (
@@ -20,6 +21,7 @@ const Pages = () => {
           <Route exact path="/signup" element={<Registration />} />
           <Route exact path="/admin/login" element={<AdminLogin />} />
           <Route exact path="/admin/signup" element={<AdminReg />} />
+          <Route exact path="/admin/property" element={<PropertyForm />} />
         </Routes>
         <ProfileCard />
         <Footer />
