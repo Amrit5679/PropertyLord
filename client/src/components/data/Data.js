@@ -58,7 +58,7 @@ export const list = [
     name: "Red Carpet Real Estate",
     location: "210 Zirak Road, Canada",
     category: "For Rent",
-    price: "$3,700",
+    price: "₹3,70,000",
     type: "Apartment",
   },
   {
@@ -67,7 +67,7 @@ export const list = [
     name: "Fairmount Properties",
     location: "5698 Zirak Road, NewYork",
     category: "For Sale",
-    price: "$9,750",
+    price: "₹9,75,000",
     type: "Condos",
   },
   {
@@ -76,7 +76,7 @@ export const list = [
     name: "The Real Estate Corner",
     location: "5624 Mooker Market, USA",
     category: "For Rent",
-    price: "$5,860",
+    price: "₹5,86,000",
     type: "Offices",
   },
   {
@@ -85,7 +85,7 @@ export const list = [
     name: "Herringbone Realty",
     location: "5621 Liverpool, London",
     category: "For Sale",
-    price: "$7,540",
+    price: "₹7,54,000",
     type: "Homes & Villas",
   },
   {
@@ -94,7 +94,7 @@ export const list = [
     name: "Brick Lane Realty",
     location: "210 Montreal Road, Canada",
     category: "For Rent",
-    price: "$4,850",
+    price: "₹4,85,000",
     type: "Commercial",
   },
   {
@@ -103,7 +103,7 @@ export const list = [
     name: "Banyon Tree Realty",
     location: "210 Zirak Road, Canada",
     category: "For Sale",
-    price: "$2,742",
+    price: "₹2,74,200",
     type: "Apartment",
   },
 ]

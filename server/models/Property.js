@@ -1,10 +1,26 @@
 const mongoose = require('mongoose');
 
 
+const fileSchema = new mongoose.Schema({
+    filename: {
+        type: String,
+        required: true
+    },
+    originalname: {
+        type: String,
+        required: true
+    },
+    size: {
+        type: Number,
+        required: true
+    }
+});
+
+
 const propertySchema = new mongoose.Schema({
     id: String,
-    propertyimage: String,
-    detailimage: Object,
+    
+    detailimage: [fileSchema],
     title: {
         shortTitle: String,
         longTitle: String

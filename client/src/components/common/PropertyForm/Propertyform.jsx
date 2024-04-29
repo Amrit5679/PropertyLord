@@ -5,8 +5,7 @@ import axios from 'axios';
 const PropertyForm = () => {
     const [formData, setFormData] = useState({
         id: '',
-        propertyimage: '',
-        detailimage: [], 
+        detailimage: [],
         shortTitle: '',
         longTitle: '',
         prices: {
@@ -55,22 +54,39 @@ const PropertyForm = () => {
 
     const handleImageChange = (e) => {
         const files = Array.from(e.target.files);
-        const urls = files.map(file => URL.createObjectURL(file));
         setFormData(prevState => ({
             ...prevState,
-            detailimage: urls
+            detailimage: files.slice(0)
         }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            
-            const response = await axios.post('http://localhost:4000/api/property', formData);
+            const formDataToSubmit = new FormData();
+            formDataToSubmit.append('id', formData.id);
+            formData.detailimage.forEach(file => {
+                formDataToSubmit.append('detailimage', file);
+            });
+            formDataToSubmit.append('shortTitle', formData.shortTitle);
+            formDataToSubmit.append('longTitle', formData.longTitle);
+            formDataToSubmit.append('prices[mrp]', formData.prices.mrp);
+            formDataToSubmit.append('prices[discount]', formData.prices.discount);
+            formDataToSubmit.append('prices[cost]', formData.prices.cost);
+            formDataToSubmit.append('location', formData.location);
+            formDataToSubmit.append('category', JSON.stringify(formData.category));
+            formDataToSubmit.append('description', formData.description);
+            formDataToSubmit.append('facilities', JSON.stringify(formData.facilities));
+
+            const response = await axios.post('http://localhost:4000/api/property', formDataToSubmit, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
             console.log(response.data);
             setFormData({
                 id: '',
-                propertyimage: '',
+              
                 detailimage: [],
                 shortTitle: '',
                 longTitle: '',
@@ -92,18 +108,15 @@ const PropertyForm = () => {
     return (
         <form onSubmit={handleSubmit}>
             <label>
-                ID:
+               Property ID:
                 <input type="text" name="id" value={formData.id} onChange={handleChange} />
             </label>
+            
             <label>
-                Property Image file:
-                <input type="file" name="propertyimage" onChange={handleImageChange} />
-            </label>
-            <label>
-                Detail Image url:
+                Detail Image files:
                 <input type="file" name="detailimage" onChange={handleImageChange} multiple />
-                {formData.detailimage.map((image, index) => (
-                    <img key={index} src={image} alt={`Detail Image ${index}`} style={{ maxWidth: '100px', maxHeight: '100px', margin: '5px' }} />
+                {formData.detailimage.map((file, index) => (
+                    <div key={index}>{file.name}</div>
                 ))}
             </label>
             <label>
@@ -143,11 +156,13 @@ const PropertyForm = () => {
                     ]}
                 />
             </label>
+
             <label>
                 Description:
-                <input type="textarea" name="description" value={formData.description} onChange={handleChange} className=' border rounded-md'/>
+                <textarea name="description" value={formData.description} onChange={handleChange} className='border rounded-md w-full p-2 mt-1 focus:outline-none focus:border-blue-500' />
             </label>
-            <label>
+
+            <label className='mt-2'>
                 Facilities:
                 <CreatableSelect
                     isMulti
@@ -155,7 +170,6 @@ const PropertyForm = () => {
                     value={formData.facilities.map(option => ({ value: option, label: option }))}
                     onChange={handleFacilitiesChange}
                     options={[
-                       
                         { value: 'TV', label: 'TV' },
                         { value: 'Electricity', label: 'Electricity' },
                         { value: 'Wifi', label: 'Wifi' },

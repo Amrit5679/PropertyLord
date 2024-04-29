@@ -1,12 +1,37 @@
 
 const express = require('express');
 const Property = require('../models/Property');
+const multer = require('multer')
 
 const router = express.Router();
 
-router.post('/property', async (req, res) => {
+// Multer storage configuration
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/'); 
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname); 
+    }
+});
+const uploads = multer({ storage: storage });
+router.post('/property', uploads.array('detailimage'), async (req, res) => {
     try {
-        const newProperty = new Property(req.body);
+        console.log(req.body);
+        const { id, shortTitle, longTitle, prices, location, category, description, facilities } = req.body;
+        const detailimage = req.files.map(file => ({ filename: file.filename, originalname: file.originalname, size: file.size }));
+        const newProperty = new Property({
+            id,
+            shortTitle,
+            longTitle,
+            prices,
+            location,
+            category,
+            description,
+            facilities,
+            detailimage
+        });
+        console.log(req.body, req.files);
         await newProperty.save();
 
         res.status(201).json({ message: 'Property created successfully', property: newProperty });
