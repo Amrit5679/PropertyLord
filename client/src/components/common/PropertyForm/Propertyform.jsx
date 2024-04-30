@@ -8,11 +8,9 @@ const PropertyForm = () => {
         detailimage: [],
         shortTitle: '',
         longTitle: '',
-        prices: {
-            mrp: '',
-            discount: '',
-            cost: ''
-        },
+        mrp: '',
+        discount: '',
+        cost: '',
         location: '',
         category: [],
         description: '',
@@ -24,17 +22,6 @@ const PropertyForm = () => {
         setFormData(prevState => ({
             ...prevState,
             [name]: value
-        }));
-    };
-
-    const handlePriceChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            prices: {
-                ...prevState.prices,
-                [name]: value
-            }
         }));
     };
 
@@ -56,7 +43,7 @@ const PropertyForm = () => {
         const files = Array.from(e.target.files);
         setFormData(prevState => ({
             ...prevState,
-            detailimage: files.slice(0)
+            detailimage: files
         }));
     };
 
@@ -70,9 +57,9 @@ const PropertyForm = () => {
             });
             formDataToSubmit.append('shortTitle', formData.shortTitle);
             formDataToSubmit.append('longTitle', formData.longTitle);
-            formDataToSubmit.append('prices[mrp]', formData.prices.mrp);
-            formDataToSubmit.append('prices[discount]', formData.prices.discount);
-            formDataToSubmit.append('prices[cost]', formData.prices.cost);
+            formDataToSubmit.append('mrp', formData.mrp);
+            formDataToSubmit.append('discount', formData.discount);
+            formDataToSubmit.append('cost', formData.cost);
             formDataToSubmit.append('location', formData.location);
             formDataToSubmit.append('category', JSON.stringify(formData.category));
             formDataToSubmit.append('description', formData.description);
@@ -86,15 +73,12 @@ const PropertyForm = () => {
             console.log(response.data);
             setFormData({
                 id: '',
-              
                 detailimage: [],
                 shortTitle: '',
                 longTitle: '',
-                prices: {
-                    mrp: '',
-                    discount: '',
-                    cost: ''
-                },
+                mrp: '',
+                discount: '',
+                cost: '',
                 location: '',
                 category: [],
                 description: '',
@@ -108,7 +92,7 @@ const PropertyForm = () => {
     return (
         <form onSubmit={handleSubmit}>
             <label>
-               Property ID:
+               Plot No:
                 <input type="text" name="id" value={formData.id} onChange={handleChange} />
             </label>
             
@@ -129,15 +113,15 @@ const PropertyForm = () => {
             </label>
             <label>
                 Price MRP:
-                <input type="text" name="mrp" value={formData.prices.mrp} onChange={handlePriceChange} />
+                <input type="text" name="mrp" value={formData.mrp} onChange={handleChange} />
             </label>
             <label>
                 Price Discount:
-                <input type="text" name="discount" value={formData.prices.discount} onChange={handlePriceChange} />
+                <input type="text" name="discount" value={formData.discount} onChange={handleChange} />
             </label>
             <label>
                 Price Cost:
-                <input type="text" name="cost" value={formData.prices.cost} onChange={handlePriceChange} />
+                <input type="text" name="cost" value={formData.cost} onChange={handleChange} />
             </label>
             <label>
                 Location:

@@ -18,13 +18,12 @@ const uploads = multer({ storage: storage });
 router.post('/property', uploads.array('detailimage'), async (req, res) => {
     try {
         console.log(req.body);
-        const { id, shortTitle, longTitle, prices, location, category, description, facilities } = req.body;
+        const { id, shortTitle, longTitle, location, category, description, facilities, mrp, discount, cost } = req.body;
         const detailimage = req.files.map(file => ({ filename: file.filename, originalname: file.originalname, size: file.size }));
         const newProperty = new Property({
             id,
-            shortTitle,
-            longTitle,
-            prices,
+            title:{ shortTitle, longTitle },
+            price:{ mrp, discount, cost },
             location,
             category,
             description,
