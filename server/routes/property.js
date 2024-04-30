@@ -48,9 +48,9 @@ router.get('/property', async (req, res) => {
     }
 });
 
-router.get('/property:id', async (req, res) => {
+router.get('/property/:_id', async (req, res) => {
     try {
-        const property = await Property.findById(req.params.id);
+        const property = await Property.findById(req.params._id);
         if (!property) {
             return res.status(404).json({ message: 'Property not found' });
         }
